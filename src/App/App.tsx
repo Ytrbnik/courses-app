@@ -1,6 +1,6 @@
 import Header from '../components/Header/Header';
 import Courses from '../components/Courses/Courses';
-import { mockedCoursesList, mockedAuthorsList } from '../helpers/dateGenerator'
+import { mockedCoursesList, mockedAuthorsList } from '../helpers/dateGenerator';
 
 import './App.css';
 
