@@ -1,16 +1,16 @@
 import Header from '../components/Header/Header';
 import Courses from '../components/Courses/Courses';
+import { mockedCoursesList, mockedAuthorsList } from '../helpers/dateGenerator'
 
 import './App.css';
 
-
-function App() {
+const App: React.FC = () => {
 	return (
 		<div className='app'>
 			<Header />
-			<Courses />
+			<Courses courses={mockedCoursesList} authors={mockedAuthorsList} />
 		</div>
 	);
-}
+};
 
 export default App;
