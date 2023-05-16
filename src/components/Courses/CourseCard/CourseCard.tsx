@@ -39,12 +39,12 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, authors }) => {
 	};
 
 	return (
-		<li className='coursecard' key={course.id}>
-			<div className='leftside'>
+		<li className='course-card' key={course.id}>
+			<div className='left-side'>
 				<h2>{course.title}</h2>
 				<p>{course.description}</p>
 			</div>
-			<div className='rightside'>
+			<div className='right-side'>
 				<dl>
 					<dt>Authors:</dt>
 					<dd>{authorNames.join(', ')}</dd>

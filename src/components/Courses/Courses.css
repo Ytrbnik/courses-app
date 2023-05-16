@@ -1,8 +1,9 @@
 .courses {
-    border: 2px solid yellow;
+    border: 2px solid blue;
     padding: 20px;
 }
 .coursesList {
     list-style-type: none;
     padding: 0;
+    margin: 0;
 }
