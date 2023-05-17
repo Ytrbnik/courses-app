@@ -14,7 +14,7 @@ const Header = () => {
 			<div className='push'>
 				<p>Dave</p>
 			</div>
-			<Button buttonText='LogOut' onClick={handleClick} />
+			<Button className='button' buttonText='LogOut' onClick={handleClick} />
 		</div>
 	);
 };

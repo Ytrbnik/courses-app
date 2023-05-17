@@ -1,27 +1,34 @@
 import React, { useState } from 'react';
-import Input from "../../../../common/Input/Input";
-import Button from "../../../../common/Button/Button";
+import Input from '../../../../common/Input/Input';
+import Button from '../../../../common/Button/Button';
 
-import "./SearchBar.css"
+import './SearchBar.css';
 
+interface SearchBarProps {
+	onSearch: (searchValue: string) => void;
+}
 
-const SearchBar: React.FC = () => {
-    const [searchValue, setSearchValue] = useState('');
+const SearchBar: React.FC<SearchBarProps> = ({ onSearch }) => {
+	const [searchValue, setSearchValue] = useState('');
 
-    const handleClick = () => {
-        console.log( searchValue);
+	const handleClick = () => {
+		onSearch(searchValue);
 	};
 
-    const handleInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-        setSearchValue(event.target.value);
-    };
+	const handleInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+		setSearchValue(event.target.value);
+	};
 
-    return (
-        <div>
-            <Input  placeholder='Enter course name...' value={searchValue} onChange={handleInputValue}/>
-            <Button buttonText='Search' onClick={handleClick} />
-        </div>
-    )
-}
+	return (
+		<div>
+			<Input
+				placeholder='Enter course name...'
+				value={searchValue}
+				onChange={handleInputValue}
+			/>
+			<Button buttonText='Search' onClick={handleClick} className='button' />
+		</div>
+	);
+};
 
 export default SearchBar;
