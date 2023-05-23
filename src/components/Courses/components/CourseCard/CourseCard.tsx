@@ -55,7 +55,11 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, authors }) => {
 					<dt>Created:</dt>
 					<dd>{course.creationDate}</dd>
 				</dl>
-				<Button className='button' buttonText='Show course' onClick={handleClick} />
+				<Button
+					className='button'
+					buttonText='Show course'
+					onClick={handleClick}
+				/>
 			</div>
 		</li>
 	);

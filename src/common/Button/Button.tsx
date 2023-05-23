@@ -9,7 +9,7 @@ interface Props {
 
 const Button: React.FC<Props> = ({ buttonText, onClick, className }) => {
 	return (
-		<button className={className} onClick={onClick} >
+		<button className={className} onClick={onClick}>
 			{buttonText}
 		</button>
 	);

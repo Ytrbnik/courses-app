@@ -3,6 +3,7 @@ import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
 import AddNewCourse from './components/AddNewCourse/AddNewCourse';
 import { Course, Author } from '../../helpers/Types/types';
+import CreateCourse from '../CreateCourse/CreateCourse';
 
 import './Courses.css';
 
@@ -11,40 +12,52 @@ interface CoursesProps {
 	authors: Author[];
 }
 
-const Courses: React.FC<CoursesProps> = ({ courses, authors}) => {
-  const [matchingCourses, setMatchingCourses] = useState<Course[]>(courses);
+const Courses: React.FC<CoursesProps> = ({ courses, authors }) => {
+	const [matchingCourses, setMatchingCourses] = useState<Course[]>(courses);
+	const [showCreateCourse, setShowCreateCourse] = useState(false);
 
-    const handleSearch = (searchValue: string) => {
+	const handleSearch = (searchValue: string) => {
 		if (searchValue.trim() === '') {
-		  setMatchingCourses(courses);
+			setMatchingCourses(courses);
 		} else {
-		  const filteredCourses = courses.filter((course: Course) => {
-			const lowerCaseSearchValue = searchValue.toLowerCase();
-			const lowerCaseTitle = course.title.toLowerCase();
-			const lowerCaseId = course.id.toLowerCase();
+			const filteredCourses = courses.filter((course: Course) => {
+				const lowerCaseSearchValue = searchValue.toLowerCase();
+				const lowerCaseTitle = course.title.toLowerCase();
+				const lowerCaseId = course.id.toLowerCase();
 
-			return (
-			  lowerCaseTitle.includes(lowerCaseSearchValue) || lowerCaseId.includes(lowerCaseSearchValue)
-			);
-		  });
+				return (
+					lowerCaseTitle.includes(lowerCaseSearchValue) ||
+					lowerCaseId.includes(lowerCaseSearchValue)
+				);
+			});
 
-		  setMatchingCourses(filteredCourses);
+			setMatchingCourses(filteredCourses);
 		}
-	  };
+	};
 
-  const elements = matchingCourses.map((course: Course) => (
-    <CourseCard key={course.id} course={course} authors={authors} />
-  ));
+	const elements = matchingCourses.map((course: Course) => (
+		<CourseCard key={course.id} course={course} authors={authors} />
+	));
 
-  return (
-    <div className='courses'>
-      <div className='panel'>
-        <SearchBar onSearch={handleSearch} />
-        <AddNewCourse />
-      </div>
-      <ul className='coursesList'>{elements}</ul>
-    </div>
-  );
+	const addNewCourse = () => {
+		setShowCreateCourse(true);
+	};
+
+	return (
+		<div className='courses'>
+			{showCreateCourse ? (
+				<CreateCourse />
+			) : (
+				<div>
+					<div className='panel'>
+						<SearchBar onSearch={handleSearch} />
+						<AddNewCourse onClick={addNewCourse} />
+					</div>
+					<ul className='coursesList'>{elements}</ul>
+				</div>
+			)}
+		</div>
+	);
 };
 
 export default Courses;
