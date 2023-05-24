@@ -1,10 +1,23 @@
+import React from 'react';
+
 import './Description.css';
 
-const Description = () => {
+interface DescriptionProps {
+	value: string;
+	onChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const Description: React.FC<DescriptionProps> = ({ value, onChange }) => {
 	return (
 		<div>
 			<h4>Description</h4>
-			<textarea className='textarea' />
+			<textarea
+				className='textarea'
+				value={value}
+				onChange={onChange}
+				placeholder='Enter course description'
+				rows={4}
+			/>
 		</div>
 	);
 };

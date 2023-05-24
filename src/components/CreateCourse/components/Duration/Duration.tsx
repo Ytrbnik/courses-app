@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+
 import Input from '../../../../common/Input/Input';
 
 import './Duration.css';
@@ -9,6 +10,14 @@ interface DurationProps {
 
 const Duration: React.FC<DurationProps> = ({ onSubmit }: DurationProps) => {
 	const [inputValue, setInputValue] = useState('');
+
+	const formatDuration = (duration: number) => {
+		const hours = Math.floor(duration / 60);
+		const minutes = duration % 60;
+		return `${hours.toString().padStart(2, '0')}:${minutes
+			.toString()
+			.padStart(2, '0')} hours`;
+	};
 
 	const handleInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
 		setInputValue(event.target.value);
@@ -24,7 +33,7 @@ const Duration: React.FC<DurationProps> = ({ onSubmit }: DurationProps) => {
 				onChange={handleInputValue}
 			/>
 			<p className='added-duration'>
-				Duration: {Number(inputValue) / 60} hours
+				Duration: {formatDuration(Number(inputValue))}
 			</p>
 		</div>
 	);

@@ -1,25 +1,17 @@
-import React, { useState } from 'react';
+import React from 'react';
+
 import Input from '../../../../common/Input/Input';
 
 interface TitleProps {
-	onSubmit: (submitValue: string) => void;
+	value: string;
+	onChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
 }
 
-const Title: React.FC<TitleProps> = ({ onSubmit }) => {
-	const [submitValue, setSubmithValue] = useState('');
-
-	const handleInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setSubmithValue(event.target.value);
-	};
-
+const Title: React.FC<TitleProps> = ({ value, onChange }) => {
 	return (
 		<div>
 			<h4>Title</h4>
-			<Input
-				placeholder='Enter title'
-				value={submitValue}
-				onChange={handleInputValue}
-			/>
+			<Input placeholder='Enter title' value={value} onChange={onChange} />
 		</div>
 	);
 };

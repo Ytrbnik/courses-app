@@ -40,10 +40,9 @@ h4 {
     display: flex;
     justify-content: space-between;
     align-items: center;
+
 }
-.right-side-a div ul li p {
-    margin-right: 75px;
-}
+
 .right-side-a div h4 {
     justify-content: center;
 }

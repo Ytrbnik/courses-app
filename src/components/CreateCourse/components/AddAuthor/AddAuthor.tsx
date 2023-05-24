@@ -1,22 +1,27 @@
 import React, { useState } from 'react';
+
 import Input from '../../../../common/Input/Input';
 import Button from '../../../../common/Button/Button';
 
 import './AddAuthor.css';
 
 interface AddAuthorProps {
-	onSubmit: (addValue: string) => void;
+	onAddAuthor: (addAuthorName: string) => void;
 }
 
-const AddAuthor: React.FC<AddAuthorProps> = ({ onSubmit }) => {
-	const [addValue, setAddValue] = useState('');
+const AddAuthor: React.FC<AddAuthorProps> = ({ onAddAuthor }) => {
+	const [authorName, setAuthorName] = useState('');
 
-	const handleClick = () => {
-		onSubmit(addValue);
+	const handleAddAuthor = () => {
+		console.log('Author Name:', authorName);
+		onAddAuthor(authorName);
+		setAuthorName('');
 	};
 
-	const handleInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
-		setAddValue(event.target.value);
+	const handleAuthorNameChange = (
+		event: React.ChangeEvent<HTMLInputElement>
+	) => {
+		setAuthorName(event.target.value);
 	};
 
 	return (
@@ -25,13 +30,13 @@ const AddAuthor: React.FC<AddAuthorProps> = ({ onSubmit }) => {
 			<p>Author name</p>
 			<Input
 				placeholder='Enter author name...'
-				value={addValue}
-				onChange={handleInputValue}
+				value={authorName}
+				onChange={handleAuthorNameChange}
 			/>
 			<Button
 				buttonText='Add author'
 				className='button'
-				onClick={handleClick}
+				onClick={handleAddAuthor}
 			/>
 		</div>
 	);

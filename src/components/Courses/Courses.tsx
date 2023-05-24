@@ -1,8 +1,9 @@
 import React, { SetStateAction, useState } from 'react';
+import { Course, Author } from '../../helpers/Types/types';
+
 import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
 import AddNewCourse from './components/AddNewCourse/AddNewCourse';
-import { Course, Author } from '../../helpers/Types/types';
 import CreateCourse from '../CreateCourse/CreateCourse';
 
 import './Courses.css';
