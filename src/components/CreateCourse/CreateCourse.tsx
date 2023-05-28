@@ -70,6 +70,11 @@ const CreateCourse: React.FC<CreateCourseProps> = ({ onCourseCreated }) => {
 	};
 
 	const addingNewCourse = () => {
+		if (!courseTitle || !courseDescription || !courseDuration) {
+			alert('Please fill in all the required fields.');
+			return;
+		}
+
 		const newCourse: Course = {
 			id: uuidv4(),
 			title: courseTitle,

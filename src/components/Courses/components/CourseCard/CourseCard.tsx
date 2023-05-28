@@ -53,7 +53,7 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, authors }) => {
 					<dd>{formatDuration(course.duration)}</dd>
 
 					<dt>Created:</dt>
-					<dd>{course.creationDate}</dd>
+					<dd>{course.creationDate.replace(/\//g, '-')}</dd>
 				</dl>
 				<Button
 					className='button'
