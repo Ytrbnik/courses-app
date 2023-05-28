@@ -1,4 +1,4 @@
-import React, { SetStateAction, useState } from 'react';
+import React, { useState } from 'react';
 import { Course, Author } from '../../helpers/Types/types';
 
 import CourseCard from './components/CourseCard/CourseCard';
@@ -11,11 +11,22 @@ import './Courses.css';
 interface CoursesProps {
 	courses: Course[];
 	authors: Author[];
+	onCourseCreated: (course: Course[]) => void;
 }
 
-const Courses: React.FC<CoursesProps> = ({ courses, authors }) => {
+const Courses: React.FC<CoursesProps> = ({
+	courses,
+	authors,
+	onCourseCreated,
+}) => {
 	const [matchingCourses, setMatchingCourses] = useState<Course[]>(courses);
 	const [showCreateCourse, setShowCreateCourse] = useState(false);
+
+	const addNewCourse = (course: Course) => {
+		onCourseCreated([...courses, course]);
+		setShowCreateCourse(false);
+		setMatchingCourses([...matchingCourses, course]);
+	};
 
 	const handleSearch = (searchValue: string) => {
 		if (searchValue.trim() === '') {
@@ -40,19 +51,15 @@ const Courses: React.FC<CoursesProps> = ({ courses, authors }) => {
 		<CourseCard key={course.id} course={course} authors={authors} />
 	));
 
-	const addNewCourse = () => {
-		setShowCreateCourse(true);
-	};
-
 	return (
 		<div className='courses'>
 			{showCreateCourse ? (
-				<CreateCourse />
+				<CreateCourse onCourseCreated={addNewCourse} />
 			) : (
 				<div>
 					<div className='panel'>
 						<SearchBar onSearch={handleSearch} />
-						<AddNewCourse onClick={addNewCourse} />
+						<AddNewCourse onClick={() => setShowCreateCourse(true)} />
 					</div>
 					<ul className='coursesList'>{elements}</ul>
 				</div>

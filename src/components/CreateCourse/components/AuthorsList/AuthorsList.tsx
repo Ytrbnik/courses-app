@@ -8,9 +8,13 @@ import './AuthorsList.css';
 
 interface AuthorsListProps {
 	authors: Author[];
+	onSelectedAuthorsChange: (authors: Author[]) => void;
 }
 
-const AuthorsList: React.FC<AuthorsListProps> = ({ authors }) => {
+const AuthorsList: React.FC<AuthorsListProps> = ({
+	authors,
+	onSelectedAuthorsChange,
+}) => {
 	const [availableAuthors, setAvailableAuthors] = useState<Author[]>(authors);
 	const [selectedAuthors, setSelectedAuthors] = useState<Author[]>([]);
 
@@ -25,6 +29,7 @@ const AuthorsList: React.FC<AuthorsListProps> = ({ authors }) => {
 		const updatedSelectedAuthors = [...selectedAuthors, author];
 		setAvailableAuthors(updatedAvailableAuthors);
 		setSelectedAuthors(updatedSelectedAuthors);
+		onSelectedAuthorsChange(updatedSelectedAuthors);
 	};
 
 	const handleRemoveAuthor = (author: Author) => {
@@ -34,6 +39,7 @@ const AuthorsList: React.FC<AuthorsListProps> = ({ authors }) => {
 		);
 		setAvailableAuthors(updatedAvailableAuthors);
 		setSelectedAuthors(updatedSelectedAuthors);
+		onSelectedAuthorsChange(updatedSelectedAuthors);
 	};
 
 	return (

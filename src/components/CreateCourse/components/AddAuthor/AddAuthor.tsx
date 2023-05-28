@@ -13,7 +13,6 @@ const AddAuthor: React.FC<AddAuthorProps> = ({ onAddAuthor }) => {
 	const [authorName, setAuthorName] = useState('');
 
 	const handleAddAuthor = () => {
-		console.log('Author Name:', authorName);
 		onAddAuthor(authorName);
 		setAuthorName('');
 	};

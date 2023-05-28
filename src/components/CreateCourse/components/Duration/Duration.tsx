@@ -5,10 +5,14 @@ import Input from '../../../../common/Input/Input';
 import './Duration.css';
 
 interface DurationProps {
-	onSubmit: (inputValue: string) => void;
+	value: number;
+	onSubmit: (duration: number) => void;
 }
 
-const Duration: React.FC<DurationProps> = ({ onSubmit }: DurationProps) => {
+const Duration: React.FC<DurationProps> = ({
+	value,
+	onSubmit,
+}: DurationProps) => {
 	const [inputValue, setInputValue] = useState('');
 
 	const formatDuration = (duration: number) => {
@@ -20,7 +24,9 @@ const Duration: React.FC<DurationProps> = ({ onSubmit }: DurationProps) => {
 	};
 
 	const handleInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
+		const duration = parseInt(event.target.value, 10);
 		setInputValue(event.target.value);
+		onSubmit(duration);
 	};
 
 	return (
