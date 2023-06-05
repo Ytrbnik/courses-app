@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Course, Author } from '../../helpers/Types/types';
+import { Course, Author } from '../../Types/types';
 
 import CourseCard from './components/CourseCard/CourseCard';
 import SearchBar from './components/SearchBar/SearchBar';
@@ -28,23 +28,22 @@ const Courses: React.FC<CoursesProps> = ({
 		setMatchingCourses([...matchingCourses, course]);
 	};
 
-	const handleSearch = (searchValue: string) => {
-		if (searchValue.trim() === '') {
-			setMatchingCourses(courses);
-		} else {
-			const filteredCourses = courses.filter((course: Course) => {
-				const lowerCaseSearchValue = searchValue.toLowerCase();
-				const lowerCaseTitle = course.title.toLowerCase();
-				const lowerCaseId = course.id.toLowerCase();
+	const onSearch = (searchValue: string) => {
+		const filteredCourses =
+			searchValue.trim() === ''
+				? courses
+				: courses.filter((course: Course) => {
+						const lowerCaseSearchValue = searchValue.toLowerCase();
+						const lowerCaseTitle = course.title.toLowerCase();
+						const lowerCaseId = course.id.toLowerCase();
 
-				return (
-					lowerCaseTitle.includes(lowerCaseSearchValue) ||
-					lowerCaseId.includes(lowerCaseSearchValue)
-				);
-			});
+						return (
+							lowerCaseTitle.includes(lowerCaseSearchValue) ||
+							lowerCaseId.includes(lowerCaseSearchValue)
+						);
+				  });
 
-			setMatchingCourses(filteredCourses);
-		}
+		setMatchingCourses(filteredCourses);
 	};
 
 	const elements = matchingCourses.map((course: Course) => (
@@ -52,13 +51,13 @@ const Courses: React.FC<CoursesProps> = ({
 	));
 
 	return (
-		<div className='courses'>
+		<div className='main'>
 			{showCreateCourse ? (
 				<CreateCourse onCourseCreated={addNewCourse} />
 			) : (
-				<div>
+				<div className='section'>
 					<div className='panel'>
-						<SearchBar onSearch={handleSearch} />
+						<SearchBar onSearch={onSearch} />
 						<AddNewCourse onClick={() => setShowCreateCourse(true)} />
 					</div>
 					<ul className='coursesList'>{elements}</ul>

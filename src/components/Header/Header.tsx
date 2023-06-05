@@ -9,13 +9,13 @@ const Header = () => {
 	};
 
 	return (
-		<div className='header'>
+		<header className='header'>
 			<Logo />
-			<div className='push'>
+			<div className='user-name'>
 				<p>Dave</p>
 			</div>
 			<Button className='button' buttonText='LogOut' onClick={handleClick} />
-		</div>
+		</header>
 	);
 };
 

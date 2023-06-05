@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { v4 as uuidv4 } from 'uuid';
 
-import { mockedAuthorsList } from '../../helpers/dateGenerator';
+import { mockedAuthorsList } from '../../Mocks/Mocks';
+import dateGeneration from '../../helpers/dateGeneration';
 
 import Title from './components/Title/Title';
 import Description from './components/Description/Description';
@@ -58,9 +59,6 @@ const CreateCourse: React.FC<CreateCourseProps> = ({ onCourseCreated }) => {
 
 	const allAuthors = [...mockedAuthorsList, ...authors];
 
-	const today = new Date();
-	const currentDate = today.toISOString().slice(0, 10);
-
 	const submitedDuration = (duration: number) => {
 		setCourseDuration(duration);
 	};
@@ -79,7 +77,7 @@ const CreateCourse: React.FC<CreateCourseProps> = ({ onCourseCreated }) => {
 			id: uuidv4(),
 			title: courseTitle,
 			description: courseDescription,
-			creationDate: currentDate,
+			creationDate: dateGeneration,
 			duration: courseDuration,
 			authors: selectedAuthors.map((author) => author.id),
 		};

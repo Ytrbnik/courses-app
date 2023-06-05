@@ -1,4 +1,4 @@
-import { Course, Author } from './Types/types';
+import { Course, Author } from '../Types/types';
 
 export const mockedCoursesList: Course[] = [
 	{

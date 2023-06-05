@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
 import Input from '../../../../common/Input/Input';
+import formatDuration from '../../../../helpers/formatDuration/formatDuration';
 
 import './Duration.css';
 
@@ -14,14 +15,6 @@ const Duration: React.FC<DurationProps> = ({
 	onSubmit,
 }: DurationProps) => {
 	const [inputValue, setInputValue] = useState('');
-
-	const formatDuration = (duration: number) => {
-		const hours = Math.floor(duration / 60);
-		const minutes = duration % 60;
-		return `${hours.toString().padStart(2, '0')}:${minutes
-			.toString()
-			.padStart(2, '0')} hours`;
-	};
 
 	const handleInputValue = (event: React.ChangeEvent<HTMLInputElement>) => {
 		const duration = parseInt(event.target.value, 10);

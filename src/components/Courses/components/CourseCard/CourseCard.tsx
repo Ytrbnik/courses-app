@@ -1,4 +1,5 @@
 import Button from '../../../../common/Button/Button';
+import formatDuration from '../../../../helpers/formatDuration/formatDuration';
 
 import './CourseCard.css';
 
@@ -25,14 +26,6 @@ const CourseCard: React.FC<CourseCardProps> = ({ course, authors }) => {
 		const author = authors.find((author) => author.id === authorId);
 		return author ? author.name : '';
 	});
-
-	const formatDuration = (duration: number): string => {
-		const hours = Math.floor(duration / 60);
-		const minutes = duration % 60;
-		return `${hours.toString().padStart(2, '0')}:${minutes
-			.toString()
-			.padStart(2, '0')} hours`;
-	};
 
 	const handleClick = () => {
 		console.log('Click');

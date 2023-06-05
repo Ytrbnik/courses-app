@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 
 import Button from '../../../../common/Button/Button';
 
-import { Author } from '../../../../helpers/Types/types';
+import { Author } from '../../../../Types/types';
 
 import './AuthorsList.css';
 
